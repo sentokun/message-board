@@ -6,18 +6,28 @@
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
-      <br>
       <%= message.body %>
       <br>
     <% end %>
   </div>
 </div>
 
-<%= form_for(Message.new) do |f| %>
-  名前:
-  <%= f.text_field :name %>
-
-  内容:
-  <%= text_area :page, :comtent %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    メッセージを書き込む
+  </div>
+  <div class="panel-body">
+  <%= form_for(Message.new) do |f| %>
+    <span class="label label-info">名前:</span>
+    <br>
+    <%= f.text_field :name %>
+    <br>
+    <br>
+    <span class="label label-info">内容:</span>
+    <br>
+    <%= text_area :page, :comtent , :size => "30" %>
+    <br>
+    <%= f.submit class: "btn btn-sm btn-primary" %>
+  <% end %>
+  </div>
+</div>
