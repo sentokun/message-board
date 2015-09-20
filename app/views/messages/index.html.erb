@@ -17,7 +17,31 @@
     メッセージを書き込む
   </div>
   <div class="panel-body">
-  <%= form_for(Message.new) do |f| %>
+  <%= form_for(@message) do |f| %>
+  
+  <% if @message.errors.present? %>
+  
+    <div class="alert alert-danger">
+      
+  <%= alert %>
+      
+      <ul>
+        
+  <% @message.errors.full_messages.each do |full_message| %>
+        
+        <li>
+          
+  <%= full_message %>
+  
+        </li>
+  
+  <% end %>
+  
+      </ul>
+    </div>
+  
+  <% end %>
+  
     <span class="label label-info">名前:</span>
     <br>
     <%= f.text_field :name %>
@@ -25,7 +49,7 @@
     <br>
     <span class="label label-info">内容:</span>
     <br>
-    <%= text_area :page, :comtent , :size => "30" %>
+    <%= f.text_field :body %>
     <br>
     <%= f.submit class: "btn btn-sm btn-primary" %>
   <% end %>
