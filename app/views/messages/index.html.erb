@@ -2,56 +2,28 @@
   <div class="panel-heading">
     メッセージ一覧
   </div>
-    
+
   <div class="panel-body">
-    <% @messages.each do |message| %>
-      <span class="label label-info"><%= message.name %></span>
-      <%= message.body %>
+    
+<% @messages.each do |message| %>
+
+      <span class="label label-info">
+<%= message.name %>
+</span>
+      
+<%= message.body %>
+
+  (
+  <<%= link_to "edit" , edit_message_path(message) %>
+  )
+
       <br>
-    <% end %>
+    
+<% end %>
+
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    メッセージを書き込む
-  </div>
-  <div class="panel-body">
-  <%= form_for(@message) do |f| %>
-  
-  <% if @message.errors.present? %>
-  
-    <div class="alert alert-danger">
-      
-  <%= alert %>
-      
-      <ul>
-        
-  <% @message.errors.full_messages.each do |full_message| %>
-        
-        <li>
-          
-  <%= full_message %>
-  
-        </li>
-  
-  <% end %>
-  
-      </ul>
-    </div>
-  
-  <% end %>
-  
-    <span class="label label-info">名前:</span>
-    <br>
-    <%= f.text_field :name %>
-    <br>
-    <br>
-    <span class="label label-info">内容:</span>
-    <br>
-    <%= f.text_field :body %>
-    <br>
-    <%= f.submit class: "btn btn-sm btn-primary" %>
-  <% end %>
-  </div>
-</div>
+<% #部分テンプレートを読み込んでいる %>
+
+<%= render 'form' %>
